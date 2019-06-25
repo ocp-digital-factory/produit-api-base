@@ -37,7 +37,7 @@ public class ProduitRest {
     }
 
     @GetMapping("/reference/{reference}")
-    public ProduitVo findByReference(@PathVariable String reference) {
+    public ProduitVo findByReference(@PathVariable("reference") String reference) {
         return new ProduitVoConverter().toVo(produitService.findByReference(reference));
     }
 
