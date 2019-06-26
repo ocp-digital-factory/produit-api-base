@@ -10,6 +10,8 @@ import fst.tps.produitApi.rest.vo.ProduitVo;
 import fst.tps.produitApi.rest.converter.ProduitVoConverter;
 import fst.tps.produitApi.domain.model.service.ProduitService;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +41,16 @@ public class ProduitRest {
     @GetMapping("/reference/{reference}")
     public ProduitVo findByReference(@PathVariable("reference") String reference) {
         return new ProduitVoConverter().toVo(produitService.findByReference(reference));
+    }
+
+    @GetMapping("/referenece/exists")
+    public Integer produitsExists(@RequestBody List<Produit> produits) {
+        return
+                produitService.findByReferences(
+                        produits.stream()
+                                .map(produit -> produit.getReference())
+                                .collect(Collectors.toList())
+                );
     }
 
     @GetMapping("/{id}")

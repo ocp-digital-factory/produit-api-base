@@ -18,6 +18,8 @@ public interface ProduitService {
 
     public Produit findByReference(String reference);
 
+    public Integer findByReferences(List<String> references);
+
     public Produit find(Long id);
 
     public List<Produit> findAll();

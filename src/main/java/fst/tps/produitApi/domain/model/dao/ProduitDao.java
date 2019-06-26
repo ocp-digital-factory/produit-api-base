@@ -9,6 +9,8 @@ import fst.tps.produitApi.domain.bean.Produit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  *
  * @author YOUNES
@@ -16,4 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProduitDao extends JpaRepository<Produit, Long>{
     public Produit findByReference(String reference);
+
+    public List<Produit> findAllByReferenceIn(List<String> references);
 }

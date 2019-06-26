@@ -28,6 +28,10 @@ public class ProduitServiceImpl implements ProduitService{
     public Produit findByReference(String reference){
         return produitDao.findByReference(reference);
     }
+
+    public Integer findByReferences(List<String> references){
+        return produitDao.findAllByReferenceIn(references).size();
+    }
     
     public Produit find(Long id){
         return produitDao.getOne(id);
